@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestApp.Data</name>
+    </assembly>
+    <members>
+        <member name="P:RestApp.Data.Contracts.ICharacterModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:RestApp.Data.Contracts.ICharacterModel.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:RestApp.Data.Contracts.ICharacterModel.Episodes">
+            <summary>
+            episodes
+            </summary>
+        </member>
+        <member name="P:RestApp.Data.Contracts.ICharacterModel.Friends">
+            <summary>
+            Friends
+            </summary>
+        </member>
+        <member name="M:RestApp.Data.Database.ApplicationDbContextDataGenerator.AddCharacterEpisodes(System.Object[])">
+            <summary>
+            characterId is always at first (zero) index
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:RestApp.Data.Database.ApplicationDbContextDataGenerator.AddCharacterFriends(System.Object[])">
+            <summary>
+            characterId is always at first (zero) index
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:RestApp.Data.Database.DesignTimeDbContextFactoryBase`1">
+            <summary>
+            It is a generic way to set connection string in separated project database
+            Source: https://www.benday.com/2017/12/19/ef-core-2-0-migrations-without-hard-coded-connection-strings/
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="P:RestApp.Data.Models.CharacterServiceResult.Error">
+            <summary>
+            Error message
+            </summary>
+        </member>
+        <member name="P:RestApp.Data.Models.CharacterServiceResult.ResultId">
+            <summary>
+            Id of item
+            </summary>
+        </member>
+        <member name="P:RestApp.Data.Models.CharacterServiceResult.ResultIsOk">
+            <summary>
+            Result status, it could be a new generated id from db or 1 for ok. Otherwise it is -1
+            </summary>
+        </member>
+    </members>
+</doc>

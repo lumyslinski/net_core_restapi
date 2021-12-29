@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestApp</name>
+    </assembly>
+    <members>
+        <member name="T:RestApp.Attributes.ValidateModelStateAttribute">
+            <summary>
+            Model state validation attribute
+            </summary>
+        </member>
+        <member name="M:RestApp.Attributes.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Called before the action method is invoked
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:RestApp.Controllers.BaseController">
+            <summary>
+            Base controller
+            </summary>
+        </member>
+        <member name="P:RestApp.Controllers.BaseController.JsonSettings">
+            <summary>
+            JsonSettings property
+            </summary>
+        </member>
+        <member name="M:RestApp.Controllers.BaseController.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:RestApp.Controllers.CharacterController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RestApp.Controllers.CharacterController.#ctor(RestApp.Data.Contracts.ICharacterService)">
+            <summary>
+            CharacterController
+            </summary>
+            <param name="characterService">reference to instance of CharacterRepository</param>
+        </member>
+        <member name="M:RestApp.Controllers.CharacterController.AddCharacter(RestApp.Models.CharacterModelDataContract)">
+            <summary>
+            adds an character item
+            </summary>
+            <remarks>Adds an item character to the system</remarks>
+            <param name="characterModel">Character item to add</param>
+            <response code="201">item created</response>
+            <response code="400">invalid input, object invalid</response>
+            <response code="409">an existing item already exists</response>
+        </member>
+        <member name="M:RestApp.Controllers.CharacterController.DeleteCharacter(System.Int32)">
+            <summary>
+            Deletes a character
+            </summary>
+            <param name="characterId">Character id to delete</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Character not found</response>
+        </member>
+        <member name="M:RestApp.Controllers.CharacterController.GetListOfCharacters(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            get list of characters
+            </summary>
+            <remarks>Returns all characters of Star Wars movie </remarks>
+            <param name="searchString">pass an optional search string for looking up characters</param>
+            <param name="skip">number of records to skip for pagination</param>
+            <param name="limit">maximum number of records to return</param>
+            <response code="200">search results matching criteria</response>
+            <response code="404">Characters not found</response>
+            <response code="400">bad input parameter</response>
+        </member>
+        <member name="M:RestApp.Controllers.CharacterController.UpdateCharacter(RestApp.Models.CharacterModelDataContract,System.Int32)">
+            <summary>
+            Update an existing character
+            </summary>
+            <param name="body">Character object that needs to be added first</param>
+            <param name="characterId">Character id to update</param>
+            <response code="400">Invalid ID supplied</response>
+            <response code="404">Character not found</response>
+            <response code="405">Validation exception</response>
+        </member>
+        <member name="T:RestApp.Filters.BasePathFilter">
+            <summary>
+            BasePath Document Filter sets BasePath property of Swagger and removes it from the individual URL paths
+            </summary>
+        </member>
+        <member name="M:RestApp.Filters.BasePathFilter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="basePath">BasePath to remove from Operations</param>
+        </member>
+        <member name="P:RestApp.Filters.BasePathFilter.BasePath">
+            <summary>
+            Gets the BasePath of the Swagger Doc
+            </summary>
+            <returns>The BasePath of the Swagger Doc</returns>
+        </member>
+        <member name="M:RestApp.Filters.BasePathFilter.Apply(Swashbuckle.AspNetCore.Swagger.SwaggerDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            Apply the filter
+            </summary>
+            <param name="swaggerDoc">SwaggerDocument</param>
+            <param name="context">FilterContext</param>
+        </member>
+        <member name="T:RestApp.Filters.GeneratePathParamsValidationFilter">
+            <summary>
+            Path Parameter Validation Rules Filter
+            </summary>
+        </member>
+        <member name="M:RestApp.Filters.GeneratePathParamsValidationFilter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="operation">Operation</param>
+            <param name="context">OperationFilterContext</param>
+        </member>
+        <member name="T:RestApp.Models.CharacterModelDataContract">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RestApp.Models.CharacterModelDataContract.Id">
+            <summary>
+            Gets or Sets Id
+            </summary>
+        </member>
+        <member name="P:RestApp.Models.CharacterModelDataContract.Name">
+            <summary>
+            Gets or Sets Name
+            </summary>
+        </member>
+        <member name="P:RestApp.Models.CharacterModelDataContract.Episodes">
+            <summary>
+            Gets or Sets episodes
+            </summary>
+        </member>
+        <member name="P:RestApp.Models.CharacterModelDataContract.Friends">
+            <summary>
+            Gets or Sets Friends
+            </summary>
+        </member>
+        <member name="M:RestApp.Models.CharacterModelDataContract.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:RestApp.Models.CharacterModelDataContract.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:RestApp.Models.CharacterModelDataContract.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:RestApp.Models.CharacterModelDataContract.Equals(RestApp.Models.CharacterModelDataContract)">
+            <summary>
+            Returns true if CharacterItem instances are equal
+            </summary>
+            <param name="other">Instance of CharacterItem to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:RestApp.Models.CharacterModelDataContract.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:RestApp.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:RestApp.Program.Main(System.String[])">
+            <summary>
+            Main
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:RestApp.Program.BuildWeb(System.String[])">
+            <summary>
+            CreateWebHostBuilder
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RestApp.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="M:RestApp.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:RestApp.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:RestApp.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+    </members>
+</doc>

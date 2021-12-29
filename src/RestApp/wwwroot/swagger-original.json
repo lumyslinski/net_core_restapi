@@ -1,0 +1,193 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a REST API for managing Star Wars characters",
+    "version" : "1.0.0",
+    "title" : "Star Wars API",
+    "contact" : {
+      "email" : "luk@mysl.tech"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/mysltech/StarWarsApi/1.0.0",
+  "tags" : [ {
+    "name" : "testers",
+    "description" : "Test and mock calls"
+  }, {
+    "name" : "clients",
+    "description" : "Operations available to all of the rest user clients"
+  } ],
+  "schemes": [ "http", "https" ],
+  "paths" : {
+    "/characters" : {
+      "get" : {
+        "tags" : [ "clients" ],
+        "summary" : "get list of characters",
+        "description" : "Returns all characters of Star Wars movie\n",
+        "operationId" : "getListOfCharacters",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "searchString",
+          "in" : "query",
+          "description" : "pass an optional search string for looking up characters",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "skip",
+          "in" : "query",
+          "description" : "number of records to skip for pagination",
+          "required" : false,
+          "type" : "integer",
+          "minimum" : 0,
+          "format" : "int32"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "maximum number of records to return",
+          "required" : false,
+          "type" : "integer",
+          "maximum" : 50,
+          "minimum" : 0,
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CharacterItem"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "clients" ],
+        "summary" : "adds an character item",
+        "description" : "Adds an item character to the system",
+        "operationId" : "addCharacter",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "CharacterItem",
+          "description" : "Inventory item to add",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CharacterItem"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "item created"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/characters/{characterId}" : {
+      "put" : {
+        "tags" : [ "clients" ],
+        "summary" : "Update an existing character",
+        "operationId" : "updateCharacter",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Character object that needs to be added first",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CharacterItem"
+          }
+        }, {
+          "name" : "characterId",
+          "in" : "path",
+          "description" : "Character id to delete",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Character not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "clients" ],
+        "summary" : "Deletes a character",
+        "operationId" : "deleteCharacter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "characterId",
+          "in" : "path",
+          "description" : "Character id to delete",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Character not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "CharacterItem" : {
+      "type" : "object",
+      "required" : [ "episodes", "friends", "id", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 0
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Luke Skywalker"
+        },
+        "episodes" : {
+          "type" : "array",
+          "example" : [ "NEWHOPE", "EMPIRE", "JEDI" ],
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "friends" : {
+          "type" : "array",
+          "example" : [ "Han Solo", "Leia Organa", "C-3PO", "R2-D2" ],
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "example" : {
+        "name" : "Luke Skywalker",
+        "id" : 0,
+        "episodes" : [ "NEWHOPE", "EMPIRE", "JEDI" ],
+        "friends" : [ "Han Solo", "Leia Organa", "C-3PO", "R2-D2" ]
+      }
+    }
+  }
+}
